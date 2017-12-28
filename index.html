@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+ <head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<!--声明当前页面的三要素-->
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0; padding:0;font-size: 18px; font-family:"楷体";}
+		#main{
+			position:absolute;
+			top:0; left:0; bottom:0; right:0;
+			width: 1236px;
+    		height: 840px;
+			
+			margin:auto;
+		}
+		#main .box1 {
+			float:left;
+			width:190px; height:100%;
+			background: rgba(255,255,255,0.7);
+			margin-right:10px;
+			border-radius: 10px;
+		}
+		#main .box2{
+			float:right;
+			width:1036px; height:100px;
+			background: rgba(255,255,255,0.7);
+			border-radius: 10px;
+		}
+		#main .box3{
+			float:left;
+			width:1036px; height:730px;
+			background: rgba(255,255,255,0.7);
+			margin-top:10px;
+			border-radius: 10px;
+		}
+		#main .box1,#main .box2,#main .box3{
+			
+			background: rgba(0,0,0,0.4);
+		}
+		#main .box1 .writer {
+			width:100%;height:40px;
+			margin-bottom:10px;
+		}
+		
+		#main .box1 .writer a{
+			display: block;
+			width:100%; height:40px;
+			text-decoration: none;
+			text-align:center;
+			line-height: 40px;
+			/*border-bottom:1px solid #b1b1b1;*/
+			color:white;		
+			transition: 0.3s;
+			
+		}
+
+		#main .box1 .writer a:hover{
+			background:black;
+			color:orange;
+		}
+		#main .box3 #myform table {
+			width:890px; height:436px;
+			margin:30px auto;
+			color:white;
+		}
+		#main .box3 #myform table .info{
+			text-align:right;
+		}
+		
+		#main .box3 #myform table input{
+			width:200px;
+			padding:10px;
+			background: rgba(0,0,0,0);
+			color:white;
+			border:none;
+			border-bottom:2px solid white;
+			outline: none;
+			transition: 0.5s;
+		}
+		#main .box3 #myform table .animeat{
+			width:700px;
+			border-radius:10px;
+			background: rgba(0,0,0,0.3);
+			border-bottom:none;
+
+		}
+		#main .box3 #myform table textarea{
+			width:700px;
+			height:280px;
+			padding:10px;
+			margin-top:30px;
+			resize: none;
+			background: rgba(255,255,255,0);
+			color:white;
+			border:2px solid white;
+			outline: none;
+			border-radius:10px;
+			
+		}
+		#submit{
+			float: right;
+			width:100px; height:40px;
+			margin-right:166px;
+			background: orange;
+			color:white;
+			text-align:center;
+			line-height: 40px;
+			border-radius: 10px;
+			cursor:pointer;
+		}
+		
+		
+		/**--------------------*/
+		#email-list{
+			width:900px;
+			margin:20px auto;
+		}
+		#email-list td{
+			padding:5px;
+			height:20px;
+			color:#fff;
+			border-bottom: 1px solid #FFF;
+		}
+		.test{
+	        overflow:hidden;
+	        text-overflow:ellipsis; 
+	        white-space: nowrap;
+		}
+		
+		#showContent{
+			position:absolute;
+			top:0; left:0; bottom:0; right:0;
+			width:500px;  height:500px;
+			background:#fff;
+			margin:auto;
+			border-radius: 10px;
+		}
+		#showContent::before{
+			display:block;
+			content:"详细信息";
+			width:500px;  height:40px;
+			background:#6fb4f7;
+			text-align: center;
+			line-height:40px;
+			border-radius:10px 10px 0px 0px;
+		}
+		#showContent .close{
+			position:absolute;
+			top:3px; right:2px;
+			width:20px; height:20px;
+			text-align: center;
+			line-height:20px;
+			cursor:pointer;
+		}
+		
+	</style>
+ 
+ </head>
+ <body>
+ 	<div style="position:relative">
+		<img id="bg" src="img/bg.jpg" border="0" alt="">
+		
+		<div id="main">
+			
+			<div class="box1">
+				<div style="margin-top:10px;" class="writer"><a href="#">写信</a></div>
+				<div class="writer"><a href="#">收件箱</a></div>
+				<div class="writer"><a href="#">发件箱</a></div>
+			</div>
+			
+			<div class="box2">
+				
+			</div>
+			
+			<div class="box3">
+				<form id="myform" style="display:none;width:100%;" action="#" method="post">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="info">收件人:</td>
+							<td><input spellcheck="false" type="text" size="" name="recipient" class="box3-form-text" /></td>
+							
+						</tr>
+						<tr>
+							<td class="info">标题:</td>
+							<td><input spellcheck="false" type="text" name="title" class="box3-form-text" /></td>
+						</tr>
+						<tr>
+							<td class="info">内容:</td>
+							<td><textarea spellcheck="false" name="content"></textarea></td>
+						</tr>
+					</table>
+					<div id="submit" onclick="verify()">发送</div>
+				</form>
+				
+				<table id="email-list"  cellspacing="0" cellpadding="0" >
+					<tr>
+						<td style="width:30px;">img</td>
+						<td style="width:100px;"><div class="test" style="width:100px; overflow:hidden;">title</div></td>
+						<td style="width:300px;"><div class="test" style="width:300px; overflow:hidden;">content</div></td>
+						<td style="width:50px;">date</td>
+						<td style="width:20px;">回复</td>
+						<td style="width:20px;">删除</td>
+					</tr>
+					
+				</table>
+
+	
+
+			</div>
+			
+		</div>
+		
+		<div id="showContent">
+			<div class="close">
+				X
+			</div>
+			<div>
+				发件人:XXX ; 收件人:XXX; 时间:XXX 
+				<br><br>
+				<p>内容:</p>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+ </body>
+
+ <script type="text/javascript">
+ 
+ 	window.onload = function() {
+		autoBg();
+		inputWH();
+	}
+ 	
+ 
+	var oBg = document.getElementById("bg");
+	
+	/* 背景图片的  自动适应浏览器  */
+	function autoBg() {
+		if(document.documentElement.clientWidth < 1360) {
+			oBg.style.width = 1360+"px";
+		}else{
+			oBg.style.width = document.documentElement.clientWidth+"px";
+		}
+		
+		if(document.documentElement.clientHeight < 960) {
+			oBg.style.height = 960+"px";
+		}else{
+			oBg.style.height = document.documentElement.clientHeight+"px";
+		}
+	}
+	
+	
+	window.onresize = function() {
+		autoBg();
+	}
+	
+	
+	var oInputs = document.getElementsByTagName("input");
+	/*
+	 	input 获取焦点 失去焦点 的动画
+	*/
+	function inputWH() {
+		
+	
+		for(var i = 0; i < oInputs.length; i++) {
+			
+			oInputs[i].onfocus = function() {
+				this.classList.add("animeat");
+			}
+			
+			oInputs[i].onblur = function() {
+				this.classList.remove("animeat");
+			}
+			
+		}
+		
+	}
+	
+	/*  发送按钮  的提交事件  */
+	function verify() {
+		
+		var textVal = oInputs[0].value,
+			titleVal = oInputs[1].value;
+		var oTextarea = document.getElementsByTagName("textarea");
+		
+		var content = oTextarea[0].value;
+		
+		
+		console.log(textVal+"..."+titleVal);
+		
+		if(textVal == "" || titleVal == "" || content == "") {
+			alert("内容不能存在空");
+			return false;
+		}
+		
+		document.getElementById('myform').submit(); //提交
+	}
+	
+	
+ </script>
+</html>
